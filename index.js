@@ -16,18 +16,33 @@ const db = getFirestore();
 app.set("view engine", "ejs")
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.get('/welcome', (req, res) => {
     res.render("welcome")
 })
 
-app.get('/welcome/login', (req, res) => {
+app.get('/loginsubmit', (req, res) => {
+  const name = req.query.name;
+  const username = req.query.username;
+  const password = req.query.password;
+
+  db.collection("users")
+    .where("name", "==", name)
+    .where("username", "==", username)
+    .where("password", "==", password)
+    .get()
+    .then((docs) => {
+      if(docs.size > 0) {
+        res.render("mainpage");
+      } else {
+        res.send("Login failed");
+      }
+    });
+});
+
+app.get('/login', (req, res) => {
   res.render("login")
 })
 
-app.get('/welcome/registersubmit', (req, res) => {
+app.get('/registersubmit', (req, res) => {
   const firstname = req.query.firstname;
   const lastname = req.query.lastname;
   const email = req.query.email;
@@ -48,7 +63,7 @@ app.get('/welcome/registersubmit', (req, res) => {
 
 });
 
-app.get('/welcome/register', (req, res) => {
+app.get('/register', (req, res) => {
   res.render("register")
 })
 
