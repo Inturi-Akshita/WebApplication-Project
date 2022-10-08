@@ -1,0 +1,22 @@
+<html>
+    <head>
+        
+    </head>
+
+    <body>
+        <h1 align="center"> Welcome to XYZ</h1>
+
+        <form align="center" action="/questionsubmit" method="get">
+            <h3>Enter your name </h3><input type="text" name="name"><br><br>
+            <h3>Enter your Question below<br></h3>
+            <textarea rows="4" cols="40" name="question"></textarea><br><br>
+            <input type="submit">
+        </form>
+
+        <% for(var i=0;i<userData.length;i++) { %>
+            <%= userData[i].name + " " + userData[i].score %><br>
+        <% } %>
+
+
+    </body>
+</html>
