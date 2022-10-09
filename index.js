@@ -46,7 +46,7 @@ app.get('/loginsubmit', (req, res) => {
           })
         
       } else {
-        res.send("Login failed");
+        res.send("<center><h1 style=\"padding-top: 50px;\">LOGIN FAILED</h1> <h1>Enter correct credentials</h1><br><h2>OR</h2><br><h1>If not registered </h1><a href = \"http://localhost:3000/register\"><h2>Please register here</h2></a></center>");
       }
     });
 });
@@ -63,7 +63,8 @@ app.get('/registersubmit', (req, res) => {
   const password = req.query.password;
   const repassword = req.query.repassword;
 
-  db.collection("users")
+  if(password === repassword) {
+    db.collection("users")
     .add({
       name: firstname + " " + lastname,
       username: username,
@@ -73,6 +74,11 @@ app.get('/registersubmit', (req, res) => {
     .then(() => {
       res.render("login")
     });
+  } else {
+    res.send("<center><h1 style=\"padding-top: 20%\">PLEASE RE-ENTER CORRECT PASSWORD</h1></center>")
+  }
+
+  
 
 });
 app.get('/register', (req, res) => {
@@ -86,9 +92,6 @@ app.get('/questionsubmit', (req, res) => {
       .where("name", "==", name)
       .then({
         
-        .add({
-
-        })
       })
       // .add({
       //   que : que,

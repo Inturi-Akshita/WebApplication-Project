@@ -1,21 +1,84 @@
 <html>
     <head>
 
+        <style>
+            .formm {
+                border: 5px solid rgb(187, 42, 139);
+                border-radius: 40px;
+                margin-left: 570px;
+                margin-right: 570px;
+                margin-top: 40px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                background-color: rgb(198, 238, 198);
+
+            }
+            .register {
+                font-size: 200%;
+                padding-top: 30px;
+                font-family:cursive;
+                color: brown;
+            }
+            input[type=text] {
+                width: 80%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                border: 3px solid rgb(182, 163, 163);
+                transition: 0.5s;
+                outline: none;
+            }
+            
+            input[type=text]:focus {
+                border: 3px dashed rgb(63, 34, 170);
+            }
+            input[type=password] {
+                width: 80%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                border: 3px solid rgb(182, 163, 163);
+                transition: 0.5s;
+                outline: none;
+            }
+
+            input[type=password]:focus {
+                border: 3px dashed rgb(17, 39, 167);
+            }
+            input[type=submit] {
+                width: 50%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                border: 3px solid rgb(182, 163, 163);
+                transition: 0.5s;
+                outline: none;
+            }
+
+            input[type=submit]:focus {
+                border: 3px solid rgb(37, 97, 18);
+            }
+
+            body {
+                background-color: rgb(255, 255, 255)
+            }
+            div {
+                font-style: oblique;
+                font-weight: 900;
+                font-size: 20px;
+            }
+        </style>
     </head>
 
     <body>
 
-        <h1 align="center" style="padding-top: 40px;"><b>registration page</b></h1>
+        <h1 align="center" class="register"><b>REGISTRATION PAGE</b></h1>
 
-        <form align="center" style="padding-top: 90px;" action="/registersubmit" method="GET">
-            First Name : <input type="text" name="firstname"><br><br>
-            Last Name : <input type="text" name="lastname"><br><br>
-            Email id : <input type="text" name="email"><br><br>
-            Phone Number : <input type="text" name="phno"><br><br>
-            User Name : <input type="text" name="username"><br><br>
-            Password : <input type="password" name="password"><br><br>
-            Re-enter Password : <input type="password" name="repassword"><br><br>
-            <input type="checkbox">I agree to the terms and conditions<br><br>
+        <form align="center" class="formm" action="/registersubmit" method="GET">
+            <div>First Name : </div><br><input type="text" name="firstname"><br><br>
+            <div> Name : </div><br><input type="text" name="lastname"><br><br>
+            <div>Email id : </div><br><input type="text" name="email"><br><br>
+            <div>Phone Number : </div><br><input type="text" name="phno"><br><br>
+            <div>User Name : </div><br><input type="text" name="username"><br><br>
+            <div>Password : </div><br><input type="password" name="password"><br><br>
+            <div>Re-enter Password : </div><br><input type="password" name="repassword"><br><br>
             <input type="submit"><br>
         </form>
 

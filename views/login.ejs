@@ -1,22 +1,104 @@
 <html>
     <head>
 
+        <style>
+
+            input[type=text] {
+                width: 80%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                border: 3px solid rgb(182, 163, 163);
+                transition: 0.5s;
+                outline: none;
+            }
+            
+            input[type=text]:focus {
+                border: 3px dashed rgb(63, 34, 170);
+            }
+            input[type=password] {
+                width: 80%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                border: 3px solid rgb(182, 163, 163);
+                transition: 0.5s;
+                outline: none;
+            }
+
+            input[type=password]:focus {
+                border: 3px dashed rgb(17, 39, 167);
+            }
+            input[type=submit] {
+                width: 50%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                border: 3px solid rgb(182, 163, 163);
+                transition: 0.5s;
+                outline: none;
+            }
+
+            input[type=submit]:focus {
+                border: 3px solid rgb(37, 97, 18);
+            }
+
+            .login {
+                font-size: 200%;
+                padding-top: 30px;
+                font-family:cursive;
+                color: brown;
+            }
+            .formm {
+                border: 5px solid rgb(187, 42, 139);
+                border-radius: 40px;
+                margin-left: 570px;
+                margin-right: 570px;
+                margin-top: 40px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                background-color:rgb(245, 245, 231);
+
+            }
+            .reg {
+                margin-top: 40px;
+                font-size: 170%;
+            }
+            .page {
+                font-size: 170%;
+            }
+
+            a:link {
+                color: rgb(5, 54, 5);
+                text-decoration: underline;
+            }
+            a:visited {
+                color: rgb(32, 88, 19); 
+            }
+            a:hover {
+                color: red;
+            }
+            a:active {
+                color: rgb(128, 5, 87);
+            }
+            h3 {
+                font-style: oblique;
+            }
+            
+        </style>
     </head>
 
     <body>
-        <h1 align="center" style="padding-top: 40px;"><b>LOGIN PAGE</b></h1>
+        <h1 align="center" class="login"><b>LOGIN PAGE</b></h1>
 
-        <form align="center" style="padding-top: 110px;" action="/loginsubmit" method="get">
+        <form align="center" action="/loginsubmit" method="get" class="formm">
 
-            Name : <input type="text" name = "name"><br><br>
-            User Name : <input type="text" name = "username"><br><br>
-            Password : <input type="password" name = "password"><br><br>
+            <h3>Name : </h3><input type="text" name = "name"><br>
+            <h3>User Name : </h3><input type="text" name = "username"><br>
+            <h3>Password : </h3><input type="password" name = "password"><br>
             <input type="submit">
 
         </form>
 
-        <p>Didn't Register?</p>
-        <a href="http://localhost:3000/register"><p><i>Go to Registration Page</i></p></a>
+        <p><center class="reg">Didn't Register?</center></p>
+        <a href="http://localhost:3000/register"><p><i><center class="page">Register Here</center></i></p></a>
 
     </body>
 </html>
