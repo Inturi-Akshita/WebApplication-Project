@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
 
 const score = 0;
 
+app.get('/:x/rank', (req, res) => {
+  res.send('Rank page');
+})
+
 app.get('/loginsubmit', (req, res) => {
   const name = req.query.name;
   const username = req.query.username;
@@ -46,7 +50,7 @@ app.get('/loginsubmit', (req, res) => {
           })
         
       } else {
-        res.send("<center><h1 style=\"padding-top: 50px;\">LOGIN FAILED</h1> <h1>Enter correct credentials</h1><br><h2>OR</h2><br><h1>If not registered </h1><a href = \"http://localhost:3000/register\"><h2>Please register here</h2></a></center>");
+        res.send("<center><h1 style=\"padding-top: 50px;\">LOGIN FAILED</h1> <h1>Enter correct credentials</h1><br><h2>OR</h2><br><h1>If not registered </h1><a href = \"http://localhost:3000/register\"><h2>Register Here</h2></a></center>");
       }
     });
 });
@@ -109,6 +113,7 @@ app.get('/questionsubmit', (req, res) => {
         res.render("quesubmit", {userData : userData});
       })
 });
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

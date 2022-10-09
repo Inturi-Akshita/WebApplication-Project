@@ -1,15 +1,49 @@
 <html>
     <head>
-        
+        <style>
+            input[type=text] {
+                width: 150px;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                background-color: white;
+                background-image: url('searchicon.png');
+                background-position: 10px 10px; 
+                background-repeat: no-repeat;
+                padding: 12px 20px 12px 40px;
+                transition: width 0.4s ease-in-out;
+            }
+
+            input[type=text]:focus {
+                width: 100%;
+            }
+            .row {
+                background-color: rgb(126, 223, 226);
+            }
+            
+        </style>
     </head>
 
     <body>
-        <h1 align="center"> Welcome to XYZ</h1>
+
+        <div class="row" style="text-align: center;">
+
+            <div class="col-md-3" style=" display: inline-block; width: 50%; font-size: larger;">
+                <i><b><h1>SkyLine</h1></b></i>
+            </div>
+            <div class="col-md-6" style=" display: inline-block; width: 20%;">
+                <a href=""><h2>Rank</h2></a>
+            </div>
+            <div class="col-md-3" style=" display: inline-block; width: 20%;">
+                <h2>Questions</h2>
+            </div>
+        </div>
 
         <form align="center" action="/questionsubmit" method="get">
             <h3>Enter your name </h3><input type="text" name="name"><br><br>
             <h3>Enter your Question below<br></h3>
-            <textarea rows="4" cols="40" name="question"></textarea><br><br>
+            <input type="text" name="search" placeholder="Search.."><br><br>
             <input type="submit">
         </form>
 
