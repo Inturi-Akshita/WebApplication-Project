@@ -6,18 +6,18 @@
 
         <style>
             .formm {
-                border: 5px solid rgb(187, 42, 139);
+                border: 5px solid maroon;
                 border-radius: 40px;
-                margin-left: 530px;
-                margin-right: 530px;
+                margin-left: 450px;
+                margin-right: 450px;
                 margin-top: 40px;
                 padding-top: 20px;
                 padding-bottom: 20px;
-                background-color: rgb(198, 238, 198);
+                background-color: rgb(245, 250, 249);
 
             }
             .register {
-                font-size: 200%;
+                font-size: 160%;
                 padding-top: 30px;
                 font-family:cursive;
                 color: brown;
@@ -26,25 +26,25 @@
                 width: 70%;
                 padding: 12px 20px;
                 margin: 8px 0;
-                border: 3px solid rgb(182, 163, 163);
+                border: 3px solid rgb(155, 137, 137);
                 transition: 0.5s;
                 outline: none;
             }
             
             input[type=text]:focus {
-                border: 3px dashed rgb(63, 34, 170);
+                border: 3px dashed maroon;
             }
             input[type=password] {
                 width: 70%;
                 padding: 12px 20px;
                 margin: 8px 0;
-                border: 3px solid rgb(182, 163, 163);
+                border: 3px solid rgb(155, 137, 137);
                 transition: 0.5s;
                 outline: none;
             }
 
             input[type=password]:focus {
-                border: 3px dashed rgb(17, 39, 167);
+                border: 3px dashed maroon;
             }
             /*input[type=submit] {
                 width: 50%;
@@ -72,6 +72,7 @@
 
     <body>
 
+        <div align="center" style="font-size: 350%; color: maroon; background-color: rgb(198, 234, 243); height: 90px;"><i><b>SkyLimit</b></i></div>
         <h1 align="center" class="register"><b>REGISTRATION PAGE</b></h1>
 
         <form align="center" class="formm" action="/registersubmit" method="GET">
@@ -84,6 +85,8 @@
             <!--<div>Re-enter Password : </div><br>--><input type="password" placeholder="Re-enter Password" name="repassword"><br><br>
             <button type="submit" class="btn-btn-success" style="border-radius: 12px; font-size: 18px; background-color: #ffffff;">Submit</button>
         </form>
+
+        <br><h3 align="center" style="padding-bottom: 40px;"><b>After registration, <a href="http://localhost:3000/login"><i>login</i></a> here</b></h3>
 
     </body>
 </html>
