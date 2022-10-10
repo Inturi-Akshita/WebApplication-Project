@@ -1,78 +1,68 @@
 <html>
+    <head>
+        <title>SkyLimit</title>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
     <style>
-
-        .leftdiv
-        {
-            text-align: center;
-            float: left;
-            width: 61%;
-            vertical-align: center;
-            margin-bottom: 10px;
-            font-size: 30px;
-        }
-        .middlediv
-        {
-            margin-top: 40px;
-            float: left;
-            width: 12%;
-            text-align: center;
-        }
-        .rightdiv
-        {
-            margin-top: 40px;
-            float: left;
-            width: 12%;
-            text-align: center;
-        }
-        .rightd {
-            margin-top: 40px;
-            float: left;
-            width: 12%;
-            margin-right: 0%;
-            text-align: center;
-        }
-        div{
-            color: rgb(150, 116, 116);
-            /*width: 30%;*/
-            border: solid rgb(255, 254, 254);
-            vertical-align: 50%;
-            background-color: lavenderblush;
-        }
-        .main {
-            font-size: 40px;
-            color: chocolate;
+        p.main {
+            text-align: left;
+            font-size: larger;
         }
 
         a:link, a:visited {
             color: rgb(71, 24, 24);
             text-align: center;
-            text-decoration: none;
+            text-decoration: underline;
+        }
+
+        a:hover, a:active {
+            color: blue;
+        }
+
+        .row {
+            background-color: rgb(181, 235, 190);
+        }
+
+        /*.wrapper {
+    position:relative;
+    width: 150px;
+    height: 150px;
 }
 
-a:hover, a:active {
-  background-color: red;
+.img, .cross-img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
 }
+
+.cross-img {
+    opacity: 0.5;
+}*/
 
     </style>
     
     
     <body>
 
-        <div class = "bgg">
-        <div class="leftdiv">
-            <h1><i>SkyLearn</i></h1>
-        </div>
-        <div class="middlediv">
-            <h3><a href="http://localhost:3000/login">login</a></h3>
-        </div>
-        <div class="rightdiv">
-            <h3><a href="http://localhost:3000/register">register</a></h3>
-        </div>
-        <div class="rightd">
-            <h3>dev info</h3>
-        </div>
-    </div>
+        <div class="row" style="text-align: center;">
 
-        <p align="center" style="text-align: center; padding-top: 22%;" class = "main"><b>Welcome to <i>SkyLearn</i> site!</b></p>
+            <div class="col-md-3" style=" display: inline-block; width: 60%; font-size: 21px;">
+                <i><b><h1>SkyLimit</h1></b></i>
+            </div>
+            <div class="col-md-6" style=" display: inline-block; width: 15%;">
+                <a href="http://localhost:3000/login"><h2>login</h2></a>
+            </div>
+            <div class="col-md-3" style=" display: inline-block; width: 15%;">
+                <a href="http://localhost:3000/register"><h2>register</h2></a>
+            </div>
+        </div>
+
+        <p class = "main"><b>Welcome to <i style="color: rgb(146, 16, 16); font-size: larger;">SkyLimit</i> site!</b></p>
+
+        <img src="views\skylimit.jpg" />
     </body>
 </html>

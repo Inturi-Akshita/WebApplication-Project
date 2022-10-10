@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 const app = express()
 const port = 3000
 const request = require("request");
@@ -15,6 +16,10 @@ initializeApp ({
 const db = getFirestore();
 
 app.set("view engine", "ejs")
+
+app.use(express.static("public"));
+
+app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
 
 app.get('/', (req, res) => {
     res.render("welcome")
