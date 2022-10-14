@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <!-- CSS only -->
@@ -25,17 +26,24 @@
             }
             
         </style>
+
     </head>
 
     <body>
 
-        <div class="row" style="text-align: center;">
+        
+
+        <%=name%>
+        <div cla 9 ss="row" style="text-align: center;">
 
             <div class="col-md-3" style=" display: inline-block; width: 50%; font-size: larger;">
                 <i><b><h1>SkyLimit</h1></b></i>
             </div>
             <div class="col-md-6" style=" display: inline-block; width: 20%;">
-                <a href=""><h2>Rank</h2></a>
+                <script>
+                    const querystring = require('querystring');
+                </script>
+                <a href="http://localhost:8080/rank?name=<%=name%>&username=<%=username%>"><h2>Rank</h2></a>
             </div>
             <div class="col-md-3" style=" display: inline-block; width: 20%;">
                 <h2>Questions</h2>
@@ -43,15 +51,19 @@
         </div>
 
         <form align="center" action="/questionsubmit" method="get">
-            <h3>Enter your name </h3><input type="text" name="name"><br><br>
+            <!--<h3>Enter your name </h3><input type="text" name="name" value="name"><br><br>-->
             <h3>Enter your Question below<br></h3>
-            <input type="text" name="search" placeholder="Search.."><br><br>
-            <input type="submit">
+            <input type="text" name="que" placeholder="Search.."><br><br>
+            <input type="text" name="dsfs" value="<%= name %>" />
+            <input type="submit" value="Submit">
         </form>
-
-        <% for(var i=0;i<userData.length;i++) { %>
-            <%= userData[i].name + " " + userData[i].score %><br>
-        <% } %>
+        <% for(var i = 0; i < userData.length; i++) { %>
+                <% if(userData[i].name == name) { %>
+                    <%= userData[i].score%>
+                    <%= userData[i].name%>
+                <%}%>
+                
+        <%}%>
 
 
     </body>

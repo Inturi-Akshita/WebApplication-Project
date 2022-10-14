@@ -1,8 +1,9 @@
+const http = require('http');
 const express = require('express')
 const path = require('path');
 const app = express()
-const port = 3000
 const request = require("request");
+const querystring = require('querystring');
 
 const { initializeApp, cert } = require("firebase-admin/app");
 const { getFirestore } = require("firebase-admin/firestore");
@@ -25,12 +26,6 @@ app.get('/', (req, res) => {
     res.render("welcome")
 })
 
-const score = 0;
-
-app.get('/:x/rank', (req, res) => {
-  res.send('Rank page');
-})
-
 app.get('/loginsubmit', (req, res) => {
   const name = req.query.name;
   const username = req.query.username;
@@ -51,7 +46,7 @@ app.get('/loginsubmit', (req, res) => {
             })
           })
           .then(() => {
-              res.render("mp", {userData : userData});
+              res.render("mp", {userData : userData, name : name, username : username});
           })
         
       } else {
@@ -62,6 +57,7 @@ app.get('/loginsubmit', (req, res) => {
 app.get('/login', (req, res) => {
   res.render("login")
 })
+
 
 app.get('/registersubmit', (req, res) => {
   const firstname = req.query.firstname;
@@ -84,7 +80,7 @@ app.get('/registersubmit', (req, res) => {
       res.render("login")
     });
   } else {
-    res.send("<center><h1 style=\"padding-top: 20%\">PLEASE RE-ENTER CORRECT PASSWORD</h1></center>")
+    res.send("<center><h1 style=\"padding-top: 20%\">PASSWORD AND RE-ENTER PASSWORD SHOULD BE SAME</h1></center>")
   }
 
   
@@ -94,9 +90,16 @@ app.get('/register', (req, res) => {
   res.render("register")
 });
 app.get('/questionsubmit', (req, res) => {
-  const name = req.query.name;
-  const que = req.query.question;
-  var userData = [];
+  const que = req.query.que;
+  db.collection("users")
+    .add({
+      que : que,
+    })
+    .then(() => {
+      //res.render("quesubmit", {que});
+    });
+      //const name = req.query.name;
+  /*var userData = [];
     db.collection("users")
       .where("name", "==", name)
       .then({
@@ -116,10 +119,33 @@ app.get('/questionsubmit', (req, res) => {
 
       .then(() => {
         res.render("quesubmit", {userData : userData});
-      })
+      })*/
 });
 
+app.get('/rank', (req, res) => {
+  const name = req.query.name;
+  const username = req.query.username;
+  const userData = req.query.array;
+  //const userData = JSON.parse(req.query['userData']);
+  res.render("rank", {name : name, username : username, userData : userData});
+})
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.post('/update', async(req, res) => {
+  try {
+      const name = req.body.name;
+      const s = 5;
+      const userRef = await db.collection("users").doc(name)
+      .update({
+        score: s,
+      });
+      const response = await userRef.get();
+      res.send(userRef);
+  } catch(error) {
+      res.send(error);
+  }
+})
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`)
 })
