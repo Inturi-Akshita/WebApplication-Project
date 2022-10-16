@@ -7,22 +7,49 @@
             input[type=text] {
                 width: 150px;
                 box-sizing: border-box;
-                border: 2px solid #ccc;
+                border: 2px solid rgb(235, 229, 229);
                 border-radius: 4px;
                 font-size: 16px;
-                background-color: white;
+                background-color: rgb(255, 255, 255);
                 background-image: url('searchicon.png');
                 background-position: 10px 10px; 
                 background-repeat: no-repeat;
                 padding: 12px 20px 12px 40px;
                 transition: width 0.4s ease-in-out;
+                border: 3px solid rgb(0, 0, 0);
+                transition: 0.5s;
+                outline: none;
             }
 
             input[type=text]:focus {
                 width: 100%;
+                border: 3px dashed maroon;
             }
             .row {
                 background-color: rgb(126, 223, 226);
+            }
+            body {
+                background-image: url('/assets/rankbg2.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .heading {
+                font-size: 50px;
+                margin-top: 10px;
+                margin-bottom: 25px;
+            }
+            .t {
+                margin-top: 40px;
+                margin-bottom: 50px;
+            }
+            a:link, a:visited {
+                color: rgb(146, 16, 16);
+                text-align: center;
+                text-decoration: underline;
+            }
+
+            a:hover, a:active {
+                color: rgb(1, 1, 143);
             }
             
         </style>
@@ -31,41 +58,38 @@
 
     <body>
 
-        
-
-        <%=name%>
         <div cla 9 ss="row" style="text-align: center;">
 
             <div class="col-md-3" style=" display: inline-block; width: 50%; font-size: larger;">
-                <i><b><h1>SkyLimit</h1></b></i>
+                <i><b><h1 class="heading">SkyLimit</h1></b></i>
             </div>
             <div class="col-md-6" style=" display: inline-block; width: 20%;">
                 <script>
                     const querystring = require('querystring');
                 </script>
-                <a href="http://localhost:8080/rank?name=<%=name%>&username=<%=username%>"><h2>Rank</h2></a>
+                <a href="http://localhost:8080/rank?userData=<%=userData%>"><h3>Rank</h3></a>
             </div>
             <div class="col-md-3" style=" display: inline-block; width: 20%;">
-                <h2>Questions</h2>
+                <a href="http://localhost:8080/questions"><h3>Questions</h3></a>
             </div>
         </div>
 
+        <h3 class="t" align="center" style="color: rgb(173, 4, 4);">Hey <i style="color: rgb(105, 43, 7); font-size: larger;"><%=name%>!</i> Great to have you here...</h3>
+
         <form align="center" action="/questionsubmit" method="get">
-            <!--<h3>Enter your name </h3><input type="text" name="name" value="name"><br><br>-->
-            <h3>Enter your Question below<br></h3>
-            <input type="text" name="que" placeholder="Search.."><br><br>
-            <input type="text" name="dsfs" value="<%= name %>" />
-            <input type="submit" value="Submit">
+            <!-- <h3>Enter your name </h3><input type="text" name="name" value="name"><br><br> -->
+            <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin-top: 70px;">If you have any questions, Enter your Question below and click on submit.</h3><br>
+            <input type="text" name="que" placeholder="Search..."><br><br>
+            <input type="hidden" name="name" value="<%= name %>" />
+
+            <input type="submit" value="Search">
+            
+            <!-- <button type="submit" class="btn-btn-success" style="border-radius: 12px; font-size: 18px; background-color: #ffffff;">Submit</button> -->
         </form>
-        <% for(var i = 0; i < userData.length; i++) { %>
-                <% if(userData[i].name == name) { %>
-                    <%= userData[i].score%>
-                    <%= userData[i].name%>
-                <%}%>
-                
-        <%}%>
 
+        <h2 align="center" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-top: 80px;">For each question you enter, your score will be increased by 5 points and will be updated in the rank list.</h2>
 
+        <h4 align="right" style="margin-right: 80px; margin-top: 90px;"><a href="http://localhost:8080">logout</a></h4>
     </body>
 </html>
 

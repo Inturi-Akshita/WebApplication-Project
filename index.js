@@ -4,17 +4,23 @@ const path = require('path');
 const app = express()
 const request = require("request");
 const querystring = require('querystring');
+const FieldValue = require('firebase-admin').firestore.FieldValue;
 
 const { initializeApp, cert } = require("firebase-admin/app");
 const { getFirestore } = require("firebase-admin/firestore");
 
 var serviceAccount = require("./key.json");
+const { name } = require('ejs');
 
 initializeApp ({
   credential: cert(serviceAccount),
 });
 
 const db = getFirestore();
+
+app.use(express.json());
+
+app.use(express.urlencoded({extended: true}));
 
 app.set("view engine", "ejs")
 
@@ -46,8 +52,11 @@ app.get('/loginsubmit', (req, res) => {
             })
           })
           .then(() => {
-              res.render("mp", {userData : userData, name : name, username : username});
-          })
+              //console.log(userData);
+              //console.log(name);
+              res.render("mp", {userData : userData, name : name});
+          });
+          
         
       } else {
         res.send("<center><h1 style=\"padding-top: 50px;\">LOGIN FAILED</h1> <h1>Enter correct credentials</h1><br><h2>OR</h2><br><h1>If not registered </h1><a href = \"http://localhost:3000/register\"><h2>Register Here</h2></a></center>");
@@ -79,6 +88,7 @@ app.get('/registersubmit', (req, res) => {
     .then(() => {
       res.render("login")
     });
+    console.log(typeof(score));
   } else {
     res.send("<center><h1 style=\"padding-top: 20%\">PASSWORD AND RE-ENTER PASSWORD SHOULD BE SAME</h1></center>")
   }
@@ -89,60 +99,61 @@ app.get('/registersubmit', (req, res) => {
 app.get('/register', (req, res) => {
   res.render("register")
 });
-app.get('/questionsubmit', (req, res) => {
-  const que = req.query.que;
-  db.collection("users")
-    .add({
-      que : que,
+
+app.get('/questions', (req, res) => {
+  // const que = req.query.que;
+  var queData = [];
+  db.collection("questions")
+    .get()
+    .then((docs) => {
+      docs.forEach((doc) => {
+        queData.push(doc.data())
+      })
     })
     .then(() => {
-      //res.render("quesubmit", {que});
+      res.render("questions", {queData : queData});
     });
-      //const name = req.query.name;
-  /*var userData = [];
-    db.collection("users")
-      .where("name", "==", name)
-      .then({
-        
-      })
-      // .add({
-      //   que : que,
-      //   score : score + 5,
-      // })
-      .get()
-      //.then((docs) => {
-        //docs.forEach((doc) => {
-          //userData.push(doc.data())
-        
-        //})
-      
-
-      .then(() => {
-        res.render("quesubmit", {userData : userData});
-      })*/
-});
-
-app.get('/rank', (req, res) => {
-  const name = req.query.name;
-  const username = req.query.username;
-  const userData = req.query.array;
-  //const userData = JSON.parse(req.query['userData']);
-  res.render("rank", {name : name, username : username, userData : userData});
 })
 
-app.post('/update', async(req, res) => {
-  try {
-      const name = req.body.name;
-      const s = 5;
-      const userRef = await db.collection("users").doc(name)
-      .update({
-        score: s,
+
+app.get('/questionsubmit', (req, res) => {
+  que = req.query.que;
+  n = req.query.name;
+  db. collection("users"). where("name", "==", n)
+    .get()
+    .then(function(querySnapshot) {
+      querySnapshot. forEach(function(doc) {
+        // console.log(doc.id);
+        const id = doc.id;
+        db.collection("users").doc(id).update ({
+          score : FieldValue.increment(5),
+        })
       });
-      const response = await userRef.get();
-      res.send(userRef);
-  } catch(error) {
-      res.send(error);
-  }
+    })
+  db.collection("questions")
+    .add({
+      que : que,
+      name: n,
+    })
+    .then(() => {
+      var x = "https://www.google.com/search?q=" + que;
+      res.render("ans", {que : que, x : x});
+    });
+})
+
+
+app.get('/rank', (req, res) => {
+  var userData = [];
+  db.collection("users")
+  .get()
+  .then((docs) => {
+    docs.forEach((doc) => {
+      userData.push(doc.data())
+    })
+  })
+  .then(() => {
+    res.render("rank", {userData : userData});
+  });
 })
 
 const PORT = process.env.PORT || 8080;

@@ -5,7 +5,7 @@
             table {
                 font-family: arial, sans-serif;
                 border-collapse: collapse;
-                width: 80%;
+                width: 90%;
             }
           
             td, th {
@@ -15,9 +15,13 @@
             }
           
             tr:nth-child(even) {
-                background-color: #e0dbdb;
+                background-color: #dddddd;
             }
-
+            h1 {
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                margin-top: 40px;
+                margin-bottom: 40px;
+            }
             body {
                 background-image: url('/assets/rankbg1.jpg');
                 background-size: cover;
@@ -33,41 +37,25 @@
                 background-color: rgb(25, 102, 54);
                 color: white;
             }
+            
         </style>
     </head>
+    
     <body>
-        <h1 align="center" style="margin: 40px; font-size: 40px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"><b>RANK  LIST</b></h1>
-
-        <%for(var i = 0; i < userData.length - 1; i++) {%>
-            <%for(var j = i + 1; j < userData.length; j++) {%>
-                <%if(userData[j].score > userData[i].score) {%>
-                    <%var temp = userData[i];%>
-                    <%userData[i] = userData[j];%>
-                    <%userData[j] = temp;%>
-                <%}%>
-            <%}%>
-        <%}%>
-
+        <h1 align="center" style="margin: 40px; font-size: 30px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"><b>ALL ENTERED QUESTIONS</b></h1>
         <table class="table" align="center">
             <tr class="h">
-                <th>SNo</th>
+                <th>QNo.</th>
+                <th>Question</th>
                 <th>Name</th>
-                <th>UserName</th>
-                <th>Score</th>
             </tr>
-            <% for(var i = 0; i < userData.length; i++) {%>
+            <% for(var i = 0; i < queData.length; i++) {%>
             <tr class="x">
-                <td><%=i + 1%></td>
-                <td><%=userData[i].name%></td>
-                <td><%=userData[i].username%></td>
-                <td><%=userData[i].score%></td>
+                <td class="sno"><%=i + 1%></td>
+                <td><%=queData[i].que%></td>
+                <td><%=queData[i].name%></td>
             </tr>
             <%}%>
         </table>
-        <!-- <% for(var i = 0; i < userData.length; i++) { %>
-            <%=userData[i].name%>
-        <%}%> -->
-        
-        
     </body>
 </html>
